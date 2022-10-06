@@ -5,9 +5,9 @@ import stateReducer from "../../features/reducers/stateReducer";
 const HomeScreen = () => {
   const selectedPage = useSelector((state) => state.stateReducer.selectedPage);
   return (
-    <div className="flex">
+    <div className="flex ">
       <Sidebar />
-      <div className="h-screen flex-1 p-7 ">{selectedPage}</div>
+      <div className="h-screen flex-1  px-4 ">{selectedPage}</div>
     </div>
   );
 };
