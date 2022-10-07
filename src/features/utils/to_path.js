@@ -1,4 +1,4 @@
-import { baseUrl } from "../../product/constants/network_constants";
+import { baseUrl } from "../../core/constants/network_constants";
 
 export function toPath(path, query) {
   return `${baseUrl}${path}${

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import stateReducer from "../../features/reducers/stateReducer";
 const HomeScreen = () => {
   const selectedPage = useSelector((state) => state.stateReducer.selectedPage);
+
   return (
     <div className="flex ">
       <Sidebar />

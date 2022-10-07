@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { baseUrl } from "../../product/constants/network_constants";
+import { baseUrl } from "../../core/constants/network_constants";
 import Books from "../../view/home/books/Books";
 import { getBooksByPagination } from "../services/book_service";
 
@@ -18,7 +18,7 @@ export const fetchBooks = createAsyncThunk(
     return getBooksByPagination(currentPage);
   }
 );
-export const stateReducer = createSlice({
+export const bookReducer = createSlice({
   name: "book",
   initialState: initialState,
 
@@ -54,6 +54,6 @@ export const stateReducer = createSlice({
 });
 
 export const { setBooks, setSearch, setLoading, setError } =
-  stateReducer.actions;
+  bookReducer.actions;
 
-export default stateReducer.reducer;
+export default bookReducer.reducer;

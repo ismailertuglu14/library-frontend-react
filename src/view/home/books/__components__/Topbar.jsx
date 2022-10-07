@@ -1,7 +1,18 @@
 import React from "react";
+import { useState } from "react";
 import { MdFilterList } from "react-icons/md";
 
 const Topbar = () => {
+  const [name, setName] = useState("");
+
+  const handleChange = (e) => {
+    setName(e.target.value);
+  };
+  const enterPressed = (e) => {
+    if (e.keyCode == 13) {
+      console.log(`Value =>${name}`);
+    }
+  };
   return (
     <div className="flex flex-row h-16   justify-center items-center">
       {/* Search Bar Start */}
@@ -29,6 +40,9 @@ const Topbar = () => {
             className="peer h-full w-full outline-none text-sm text-gray-700 pr-2  "
             type="text"
             id="_customSearch"
+            value={name}
+            onKeyDown={enterPressed}
+            onChange={handleChange}
             placeholder="Search something.."
           />
         </div>

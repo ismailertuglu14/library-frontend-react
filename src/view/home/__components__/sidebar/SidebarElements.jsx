@@ -5,11 +5,12 @@ import { setSelectedPage } from "../../../../features/reducers/stateReducer";
 const SidebarElements = ({ Menu, index }) => {
   const dispatch = useDispatch();
   const open = useSelector((state) => state.stateReducer.open);
-
+  const selectedPage = useSelector((state) => state.stateReducer.selectedPage);
   return (
     <li
       key={index}
       className={`flex  rounded-md p-2 cursor-pointer  text-gray-300 text-sm items-center gap-x-4 group  hover:bg-white
+      ${selectedPage === Menu.route ? " bg-white" : "bg-transparent"} 
       ${Menu.gap ? "mt-9" : "mt-2"} ${index === 0 && "bg-light-white"} `}
       onClick={() => dispatch(setSelectedPage(Menu.route))}
       data-bs-toggle="tooltip"

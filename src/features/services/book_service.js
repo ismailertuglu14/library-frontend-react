@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseUrl } from "../../product/constants/network_constants";
+import { baseUrl } from "../../core/constants/network_constants";
 import { toPath } from "../utils/to_path";
 
 export async function getBooksByPagination(page) {

@@ -4,14 +4,17 @@ import {
   setOpen,
   setSelectedPage,
 } from "../../../../features/reducers/stateReducer";
+import { MdLogin, MdLogout } from "react-icons/md";
+import { useNavigate } from "react-router";
 
 import { Menus } from "../../../../product/constants/sidebar_constants";
 import SidebarElements from "./SidebarElements";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const open = useSelector((state) => state.stateReducer.open);
   const dispatch = useDispatch();
-
+  const user = useSelector((state) => state.userReducer.user);
   return (
     <div
       className={` ${
@@ -43,6 +46,13 @@ const Sidebar = () => {
         {Menus.map((Menu, index) => (
           <SidebarElements Menu={Menu} index={index} />
         ))}
+      </ul>
+      <ul className="absolute bottom-12 cursor-pointer hover:bg-red-500 p-1 rounded-md duration-300">
+        {user == null ? (
+          <MdLogin size={30} onClick={() => navigate("/login")} />
+        ) : (
+          <MdLogout size={30} />
+        )}
       </ul>
     </div>
   );

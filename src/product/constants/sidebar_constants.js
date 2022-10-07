@@ -4,7 +4,6 @@ import {
   AiOutlineCalendar,
   AiOutlineNotification,
 } from "react-icons/ai";
-import { MdLogin, MdLogout } from "react-icons/md";
 import Books from "../../view/home/books/Books";
 import RentedBooks from "../../view/home/rented_books/RentedBooks";
 
@@ -31,7 +30,6 @@ export const Menus = [
   {
     title: "Files ",
     src: <AiOutlineBook className="w-6 h-6 text-black" />,
-    gap: true,
   },
-  { title: "Login", src: <MdLogin className="w-6 h-6 text-black" /> },
+  // { title: "Login", src: <MdLogin className="w-6 h-6 text-black" /> },
 ];

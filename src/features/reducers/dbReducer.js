@@ -15,5 +15,5 @@ export const stateReducer = createSlice({
   },
 });
 
-export const { setDbData } = stateReducer.actions;
-export default stateReducer.reducer;
+export const { setDbData } = dbReducer.actions;
+export default dbReducer.reducer;
