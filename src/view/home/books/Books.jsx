@@ -10,9 +10,9 @@ import { toPath } from "../../../features/utils/to_path";
 const Books = () => {
   const bookReducer = useSelector((state) => state.bookReducer);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchBooks(bookReducer.currentPage));
-    //console.log(toPath("/anyPath", { name: "thisQuery", value: "thisValue" }));
   }, []);
 
   return (

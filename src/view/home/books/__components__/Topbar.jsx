@@ -1,15 +1,32 @@
 import React from "react";
 import { useState } from "react";
 import { MdFilterList } from "react-icons/md";
-
+import AutoSuggest from "react-autosuggest";
+import { useDispatch } from "react-redux";
+import {
+  fetchBooks,
+  fetchBooksByName,
+} from "../../../../features/reducers/bookReducer";
 const Topbar = () => {
   const [name, setName] = useState("");
+  const [timer, setTimer] = useState(null);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setName(e.target.value);
+    if (timer) {
+      clearTimeout(timer);
+      setTimer(null);
+    }
+    setTimer(
+      setTimeout(() => {
+        // Get Suggestion books logic goes here!
+      }, 1000)
+    );
   };
   const enterPressed = (e) => {
     if (e.keyCode == 13) {
+      dispatch(fetchBooksByName(name));
       console.log(`Value =>${name}`);
     }
   };
@@ -37,10 +54,11 @@ const Topbar = () => {
           </div>
 
           <input
-            className="peer h-full w-full outline-none text-sm text-gray-700 pr-2  "
+            className=" h-full w-full outline-none text-sm text-gray-700 pr-2  "
             type="text"
             id="_customSearch"
             value={name}
+            name="_customSearcsasdadh"
             onKeyDown={enterPressed}
             onChange={handleChange}
             placeholder="Search something.."

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { baseUrl } from "../../core/constants/network_constants";
 import Books from "../../view/home/books/Books";
-import { getBooksByPagination } from "../services/book_service";
+import { getBooksByName, getBooksByPagination } from "../services/book_service";
 
 const initialState = {
   books: [],
@@ -18,24 +18,17 @@ export const fetchBooks = createAsyncThunk(
     return getBooksByPagination(currentPage);
   }
 );
+export const fetchBooksByName = createAsyncThunk(
+  "fetchBooksByName",
+  async (name) => {
+    return getBooksByName(name);
+  }
+);
 export const bookReducer = createSlice({
   name: "book",
   initialState: initialState,
 
-  reducers: {
-    setBooks: (state, action) => {
-      state.books = action.payload;
-    },
-    setSearch: (state, action) => {
-      state.search = action.payload;
-    },
-    setLoading: (state, action) => {
-      state.loading = action.payload;
-    },
-    setError: (state, action) => {
-      state.error = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchBooks.pending, (state, action) => {
       state.loading = true;
@@ -50,10 +43,22 @@ export const bookReducer = createSlice({
       state.loading = false;
       state.error = "Error fetching books data";
     });
+    builder.addCase(fetchBooksByName.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(fetchBooksByName.fulfilled, (state, action) => {
+      state.books = action.payload;
+      state.loading = false;
+      state.error = "";
+    });
+    builder.addCase(fetchBooksByName.rejected, (state, action) => {
+      state.loading = false;
+      state.error = "Error fetching books data";
+    });
   },
 });
 
-export const { setBooks, setSearch, setLoading, setError } =
-  bookReducer.actions;
+export const {} = bookReducer.actions;
 
 export default bookReducer.reducer;
